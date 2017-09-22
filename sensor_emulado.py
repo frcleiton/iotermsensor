@@ -26,14 +26,14 @@ def publish_value(_temperature, _humidity):
         send_msg = {'t': str_time,
                     'mu': 'C',
                     'value': _temperature}
-        result, mid = client.publish(temp_topic, payload=json.dumps(send_msg), qos=0, retain=True )
+        result, mid = client.publish(temp_topic, payload=json.dumps(send_msg), qos=1, retain=True )
         print "%s - %s" % (temp_topic, send_msg)
 
     if _humidity is not None:
         send_msg = {'t': str_time,
                     'mu': 'RH',
                     'value': _humidity}
-        result, mid = client.publish(humi_topic, payload=json.dumps(send_msg), qos=0, retain=True )
+        result, mid = client.publish(humi_topic, payload=json.dumps(send_msg), qos=1, retain=True )
         print "%s - %s" % (humi_topic, send_msg)
 
 
