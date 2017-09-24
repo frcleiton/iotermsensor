@@ -7,7 +7,7 @@ import Adafruit_DHT
 from datetime import datetime
 
 #Servidor Local
-MQTT_ADDRESS = '192.168.22.95'
+MQTT_ADDRESS = '192.168.50.106'
 MQTT_PORT = 8883
 MQTT_TIMEOUT = 60
 SENSOR_LOCATION = 'MG'
@@ -47,7 +47,7 @@ def read_sensor():
     #temperature = round(random.randint(0, 40)+random.random(),2)
     #humidity = round(random.randint(0, 100)+random.random(),2)
 
-    publish_value(round(temperature,2), round(humidity*2.265,0))
+    publish_value(round(temperature,2), round(humidity,0))
 
 if __name__ == '__main__':
     read_sensor()
