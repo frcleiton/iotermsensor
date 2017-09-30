@@ -7,11 +7,9 @@ import Adafruit_DHT
 from datetime import datetime
 
 #Servidor Local
-MQTT_ADDRESS = '192.168.50.106'
+MQTT_ADDRESS = 'www.ioterm.com.br'
 MQTT_PORT = 8883
 MQTT_TIMEOUT = 60
-SENSOR_LOCATION = 'MG'
-SENSOR_ROOM = 'TI'
 SENSOR_ID = 'RP01'
 
 client = mqtt.Client()
