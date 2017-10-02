@@ -18,6 +18,9 @@ client = mqtt.Client()
 
 def publish_value(_temperature, _humidity):
 
+	client.username_pw_set('ticleiton', 'ti@cleiton')
+    client.connect(MQTT_ADDRESS, MQTT_PORT, MQTT_TIMEOUT)
+
     str_time = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
     temp_topic = SENSOR_ID+'/temperature'
     humi_topic = SENSOR_ID+'/humidity'
@@ -38,10 +41,7 @@ def publish_value(_temperature, _humidity):
 
 
 def read_sensor():
-    # descomente esta linha caso seu servidor possua autenticação.
-    client.username_pw_set('ticleiton', 'ti@cleiton')
-    client.connect(MQTT_ADDRESS, MQTT_PORT, MQTT_TIMEOUT)
-
+    
     #faz a leitura do sensor
     humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 17)
     #temperature = round(random.randint(0, 40)+random.random(),2)
