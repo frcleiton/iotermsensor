@@ -7,11 +7,9 @@ from bson import json_util
 from datetime import datetime
 
 #Servidor Local
-MQTT_ADDRESS = 'localhost'
+MQTT_ADDRESS = 'www.ioterm.com.br'
 MQTT_PORT = 8883
 MQTT_TIMEOUT = 60
-SENSOR_LOCATION = 'MG'
-SENSOR_ROOM = 'TI'
 SENSOR_ID = 'RP01'
 
 client = mqtt.Client()
@@ -19,8 +17,8 @@ client = mqtt.Client()
 def publish_value(_temperature, _humidity):
 
     str_time = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-    temp_topic = SENSOR_LOCATION+'/'+SENSOR_ROOM+'/'+SENSOR_ID+'/temperature'
-    humi_topic = SENSOR_LOCATION+'/'+SENSOR_ROOM+'/'+SENSOR_ID+'/humidity'
+    temp_topic = SENSOR_ID+'/temperature'
+    humi_topic = SENSOR_ID+'/humidity'
 
     if _temperature is not None:
         send_msg = {'t': str_time,
