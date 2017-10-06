@@ -50,13 +50,13 @@ def publish_value(_temperature, _humidity):
 def read_sensor():
 
 	#faz a leitura do sensor
-    if not DEBUG:
-        import Adafruit_DHT
-        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 17)
-    else:
-        temperature = round(random.randint(0, 40)+random.random(),2)
-        humidity = round(random.randint(0, 100)+random.random(),2)
-
+	if not DEBUG:
+		import Adafruit_DHT
+		humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 17)
+	else:
+		temperature = round(random.randint(0, 40)+random.random(),2)
+		humidity = round(random.randint(0, 100)+random.random(),2)
+	#print 'publish'
 	publish_value(round(temperature,2), round(humidity,0))
 
 if __name__ == '__main__':
