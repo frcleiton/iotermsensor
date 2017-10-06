@@ -10,7 +10,7 @@ MQTT_ADDRESS = 'www.ioterm.com.br'
 MQTT_PORT = 8883
 MQTT_TIMEOUT = 60
 SENSOR_ID = 'RP01'
-DEBUG = True
+DEBUG = False
 
 config = ConfigParser.ConfigParser()
 config.read('sensor.cfg')
