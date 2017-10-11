@@ -5,21 +5,15 @@ import random
 import ConfigParser
 from datetime import datetime
 
-#Servidor Local
-MQTT_ADDRESS = 'www.ioterm.com.br'
-MQTT_PORT = 8883
-MQTT_TIMEOUT = 60
-SENSOR_ID = 'RP01'
-DEBUG = False
-
 config = ConfigParser.ConfigParser()
 config.read('sensor.cfg')
-nome_disp = config.get('config','dispositivo')
-plataforma = config.get('config','plataforma')
-if (nome_disp):
-	SENSOR_ID = nome_disp
-if (plataforma):
-	MQTT_ADDRESS = plataforma
+
+#Servidor Local
+MQTT_ADDRESS    = config.get('config','plataforma')
+MQTT_PORT       = config.get('config','porta')
+MQTT_TIMEOUT    = 60
+SENSOR_ID       = config.get('config','dispositivo')
+DEBUG           = config.get('config','mododebug')
 
 client = mqtt.Client()
 
@@ -50,7 +44,7 @@ def publish_value(_temperature, _humidity):
 def read_sensor():
 
 	#faz a leitura do sensor
-	if not DEBUG:
+	if DEBUG <> '1':
 		import Adafruit_DHT
 		humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 17)
 	else:
