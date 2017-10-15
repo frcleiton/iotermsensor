@@ -28,27 +28,31 @@ def publish_value(_temperature, _humidity, _str_time):
 		send_msg = {'t': _str_time,
 					'mu': 'C',
 					'value': _temperature}
-		result, mid = client.publish(temp_topic, payload=json.dumps(send_msg), qos=1, retain=True )
+		result, mid = client.publish(temp_topic, payload=json.dumps(send_msg), qos=0, retain=True )
 		print "%s - %s" % (temp_topic, send_msg)
 
 	if _humidity is not None:
 		send_msg = {'t': _str_time,
 					'mu': 'RH',
 					'value': _humidity}
-		result, mid = client.publish(humi_topic, payload=json.dumps(send_msg), qos=1, retain=True )
+		result, mid = client.publish(humi_topic, payload=json.dumps(send_msg), qos=0, retain=True )
 		print "%s - %s" % (humi_topic, send_msg)
 
 
 def read_sensor():
 
-	data_hora_gerada = datetime.now() - timedelta(days=10)
+	data_hora_gerada = datetime.now() - timedelta(days=1)
+	agora = datetime.now()
 		
-	for i in range(1000):
+	for i in range(50000):
 		str_time = data_hora_gerada.strftime("%d-%m-%Y %H:%M:%S")
-		temperature = round(random.randint(0, 40)+random.random(),2)
-		humidity = round(random.randint(0, 100)+random.random(),2)
+		temperature = round(random.randint(20, 25)+random.random(),2)
+		humidity = round(random.randint(40, 60)+random.random(),2)
 		publish_value(round(temperature,2), round(humidity,0), str_time)
+		print i
 		data_hora_gerada = data_hora_gerada + timedelta(minutes=1)
+		if data_hora_gerada >= agora:
+			break
 		
 
 if __name__ == '__main__':
