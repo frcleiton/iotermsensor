@@ -11,11 +11,11 @@ config.read('sensor.cfg')
 #Servidor Local
 MQTT_ADDRESS    = config.get('config','plataforma')
 MQTT_PORT       = config.get('config','porta')
-MQTT_TIMEOUT    = 60
+MQTT_TIMEOUT    = 30
 SENSOR_ID       = config.get('config','dispositivo')
 DEBUG           = config.get('config','mododebug')
 
-client = mqtt.Client()
+client = mqtt.Client(SENSOR_ID,False)
 
 def publish_value(_temperature, _humidity):
 
@@ -30,14 +30,14 @@ def publish_value(_temperature, _humidity):
 		send_msg = {'t': str_time,
 					'mu': 'C',
 					'value': _temperature}
-		result, mid = client.publish(temp_topic, payload=json.dumps(send_msg), qos=1, retain=True )
+		result, mid = client.publish(temp_topic, payload=json.dumps(send_msg), qos=1 )
 		print "%s - %s" % (temp_topic, send_msg)
 
 	if _humidity is not None:
 		send_msg = {'t': str_time,
 					'mu': 'RH',
 					'value': _humidity}
-		result, mid = client.publish(humi_topic, payload=json.dumps(send_msg), qos=1, retain=True )
+		result, mid = client.publish(humi_topic, payload=json.dumps(send_msg), qos=1 )
 		print "%s - %s" % (humi_topic, send_msg)
 
 
@@ -48,8 +48,8 @@ def read_sensor():
 		import Adafruit_DHT
 		humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 17)
 	else:
-		temperature = round(random.randint(0, 40)+random.random(),2)
-		humidity = round(random.randint(0, 100)+random.random(),2)
+		temperature = round(random.randint(20, 30)+random.random(),2)
+		humidity = round(random.randint(10, 60)+random.random(),2)
 	#print 'publish'
 	publish_value(round(temperature,2), round(humidity,0))
 
