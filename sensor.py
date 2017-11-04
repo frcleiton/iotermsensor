@@ -15,7 +15,8 @@ MQTT_TIMEOUT    = 30
 SENSOR_ID       = config.get('config','dispositivo')
 DEBUG           = config.get('config','mododebug')
 
-client = mqtt.Client(SENSOR_ID,False)
+#client = mqtt.Client(SENSOR_ID,False)
+client = mqtt.Client()
 
 def publish_value(_temperature, _humidity):
 
