@@ -1,2 +1,10 @@
-# IoTermSensorPublisher
-MQTT Publisher from Sensor DHT22 on Raspberry
+# IoTerm
+
+Módulo - IoTermSensor - Sensor IoT
+
+## Technology
+- [Raspbian OS]
+- [Eclipse Paho MQTT Client]
+- [Adafruit ADT]
+- [DHT_22 Humidity and temperature sensor]
+
