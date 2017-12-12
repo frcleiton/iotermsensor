@@ -8,3 +8,4 @@ Módulo - IoTermSensor - Sensor IoT
 - [Adafruit ADT]
 - [DHT_22 Humidity and temperature sensor]
 
+
